@@ -41,8 +41,8 @@ module.exports = class User extends Sequelize.Model{
   static associate(db)
   {
     db.User.hasMany(db.Post)
-    db.User.belongsToMany(db.User, {foreignKey : 'followingId', as : 'followers', through : 'Follow'}) // 나는 누구를 참조할꺼고, 내 이름은 뭐다 가 중요하다     
+    db.User.belongsToMany(db.User, {foreignKey : 'followingId', as : 'Followers', through : 'Follow'}) // 나는 누구를 참조할꺼고, 내 이름은 뭐다 가 중요하다     
     // db.User.belongsToMany(db.User, {foreignKey : 'followerId', as : 'followings', through : 'Follow'})
-    db.User.belongsToMany(db.User, { foreignKey : 'followerId' , as : 'followings', through : 'Follow'})
+    db.User.belongsToMany(db.User, { foreignKey : 'followerId' , as : 'Followings', through : 'Follow'})
   }
 }

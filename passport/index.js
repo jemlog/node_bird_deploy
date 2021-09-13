@@ -19,7 +19,19 @@ module.exports = () => {
   // 즉 세션에 id만 저장하는 기능 
 
   passport.deserializeUser((id,done)=>{ // 여기는 passport.session()에서 해독된 id가 들어온다. 
-    User.findOne({wehere : {id}})
+    User.findOne({where : {id},
+    include : [
+      {
+        model : User , 
+        attributes : ['id','nick'],
+        as: 'Followers'
+      },
+      {
+        model : User, 
+        attributes : ['id', 'nick'],
+        as : 'Followings'
+      }
+    ]})
     .then(user=>done(null,user))  // req.user에 찾은 user를 집어넣는다. req.isAuthenticated() 이 함수 실행시 로그인되어있으면 true
     .catch(err=>done(err))  // 세션에 저장했던 아이디를 가지고 User에서 해당하는 사람 찾는다. 찾아서 다시 done에 넣어준다. 
   })

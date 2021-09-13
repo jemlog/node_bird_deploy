@@ -24,7 +24,7 @@ module.exports = () => {
        else
        {
          const newUser = await User.create({
-           email : profile._json && profile._json?.kakao_account_email,
+           email : profile._json && profile._json?.kakao_account_email, // 자바스크립트에서는 &&는 앞에것이 있으면 뒤에걸로 하라는 뜻이다. 
            nick : profile.displayName,
            snsId : profile.id,
            provider : 'kakao'
