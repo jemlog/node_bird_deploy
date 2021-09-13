@@ -11,9 +11,10 @@ router.get('/join', (req,res,next) => {
 })
 
 router.get('/', (req,res,next) => {
+
   const twits = []
   res.render('main',{
-    title : 'NodeBird', twits
+    title : 'NodeBird', twits, user : req.user
   })
 })
 

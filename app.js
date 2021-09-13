@@ -5,8 +5,11 @@ const path = require('path');
 const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
+const passportConfig = require('./passport')
 const {sequelize} = require('./models');
 const passport = require('passport');
+const pageRouter = require('./router/page')
+const authRouter = require('./router/auth')
 dotenv.config();
 
 
@@ -17,6 +20,7 @@ nunjucks.configure('views', {
   express: app,
   watch: true,
 });
+passportConfig()
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
