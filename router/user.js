@@ -11,7 +11,7 @@ router.post('/:id/follow', isLoggedIn, async (req,res,next) => {
     const user = await User.findOne({where : {id : req.user.id}})  // 내가 
     if(user)
     {
-      await user.addFollowings([parseInt(req.params.id, 10)])  // 1번 사용자를 팔로우 할꺼야
+      await user.addFollowings([parseInt(req.params.id, 10)])  // 1번 사용자를 팔로우 할꺼야 addFollowing 등을 할때는 직접 추가보다 아이디를 추가해주자
       res.send('success')
     }
     else
